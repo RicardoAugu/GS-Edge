@@ -1,0 +1,62 @@
+Monitor de Produto
+
+Descrição
+Este projeto utiliza uma placa Arduino para monitorar o peso e a data de validade de um produto. Ele exibe as informações em uma tela LCD e fornece indicadores visuais e sonoros por meio de LEDs e um buzzer. O projeto ajuda a garantir que o peso do produto esteja dentro da faixa aceitável e que sua data de validade não tenha expirado.
+
+Requisitos
+Para executar este projeto, você precisará dos seguintes itens:
+
+Placa Arduino (por exemplo, Arduino Uno)
+Tela LCD
+LEDs vermelhos e verdes
+Buzzer
+Potenciômetro
+Sensor de temperatura
+Cabos de conexão
+Protoboard ou PCB para conexões do circuito
+Conexão do Circuito
+Conecte os componentes da seguinte forma:
+
+Conecte a tela LCD à placa Arduino usando os pinos apropriados (consulte o código para as conexões dos pinos).
+Conecte os LEDs vermelhos e verdes à placa Arduino usando os pinos especificados.
+Conecte o buzzer à placa Arduino usando o pino especificado.
+Conecte o potenciômetro ao pino analógico especificado no código.
+Conecte o sensor de temperatura ao pino analógico especificado no código.
+Uso
+Configure a conexão do circuito de acordo com as instruções fornecidas.
+
+Abra o Arduino IDE ou qualquer outro software compatível.
+
+Copie e cole o código fornecido no editor.
+
+Conecte a placa Arduino ao seu computador usando um cabo USB.
+
+Selecione a placa e a porta corretas no Arduino IDE.
+
+Clique no botão "Upload" para enviar o código para a placa Arduino.
+
+Após o envio do código, o sistema de monitoramento de produtos começará a ser executado.
+
+A tela LCD mostrará as informações de peso e data de validade do produto.
+
+Os LEDs indicarão o status do peso e da validade da seguinte maneira:
+
+Se o peso for muito baixo ou muito alto, o LED vermelho se acenderá.
+Se o peso estiver dentro da faixa aceitável, o LED verde se acenderá.
+Se a data de validade tiver expirado, o LED vermelho se acenderá.
+Se a data de validade ainda for válida, o LED verde se acenderá.
+O buzzer emitirá um som se o peso ou a validade estiverem fora da faixa aceitável.
+
+Monitore a tela LCD e os LEDs para determinar o status do produto.
+
+Ajuste o potenciômetro e o sensor de temperatura, se necessário, para obter leituras precisas.
+
+Certifique-se de alimentar a placa Arduino usando uma fonte de energia adequada.
+
+Para interromper o sistema de monitoramento, desconecte a fonte de energia ou pressione o botão de reset na placa Arduino.
+
+Solução de Problemas
+Verifique as conexões do circuito para garantir que estejam corretas.
+Verifique se os componentes estão conectados corretamente nos pinos especificados.
+Certifique-se de que as bibliotecas necessárias estejam instaladas no Arduino IDE.
+Verifique se há mensagens de erro durante a compilação ou o envio do código e resolva-os conforme necessário.
