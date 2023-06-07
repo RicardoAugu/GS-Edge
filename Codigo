@@ -1,0 +1,106 @@
+#include <LiquidCrystal.h>
+
+const byte LED_VERMELHO_PIN = 6;
+const byte LED_VERDE_PIN    = 8;
+const byte BUZZER_PIN       = 10;
+
+const byte PESO_PIN          = A2;
+const byte VALIDADE_PIN   = A1;
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+float peso = 0.0;
+float validade = 0.0;
+
+void setup()
+{
+  pinMode(BUZZER_PIN, OUTPUT);
+  digitalWrite(BUZZER_PIN, LOW);
+
+  pinMode(LED_VERMELHO_PIN, OUTPUT);
+  pinMode(LED_VERDE_PIN, OUTPUT);
+
+  digitalWrite(LED_VERMELHO_PIN, LOW);
+  digitalWrite(LED_VERDE_PIN, LOW);
+
+  pinMode(PESO_PIN, INPUT);
+  pinMode(VALIDADE_PIN, INPUT);
+
+  lcd.begin(16, 2);
+}
+
+void loop()
+{
+  byte buzzer_on = 0;
+  byte led_vermelho_on = 0;
+
+  // PEGAR VALORES
+  peso = analogRead(PESO_PIN) / 5.11; // Scale potentiometer value to range 0-200
+
+  validade = analogRead(VALIDADE_PIN) * 0.488; // Scale temperature sensor value to range 0-120
+
+  // PESO
+  lcd.clear();
+  lcd.setCursor(0, 0);
+
+  if (peso < 1){
+    lcd.print("PESO:BAIXO");
+    buzzer_on = 1;
+    led_vermelho_on = 1;
+  }
+  else if(peso > 180){
+    lcd.print("PESO:ALTO");
+    buzzer_on = 1;
+    led_vermelho_on = 1;
+  }
+  else{
+    lcd.print("PESO:OK");
+    digitalWrite(LED_VERDE_PIN, HIGH); // Turn on green LED for OK weight
+  }
+
+  lcd.setCursor(0, 1);
+  lcd.print("Peso: ");
+  lcd.print(peso);
+  lcd.print(" kg");
+
+  delay(2000);
+
+  // VALIDADE
+  lcd.clear();
+  lcd.setCursor(0, 0);
+
+  if (validade < 120){
+    lcd.print("VALIDADE:OK");
+    digitalWrite(LED_VERDE_PIN, HIGH); // Turn on green LED for OK validity
+  }
+  else{
+    lcd.print("VALIDADE:EXPIRADA");
+    buzzer_on = 1;
+    led_vermelho_on = 1;
+  }
+
+  lcd.setCursor(0, 1);
+  lcd.print("Validade: ");
+  lcd.print(validade);
+  lcd.print(" dias");
+
+  delay(2000);
+
+  // LEDs control
+  if (led_vermelho_on > 0){
+    digitalWrite(LED_VERMELHO_PIN, HIGH); // Turn on red LED if weight is high or validity is expired
+  }
+  else{
+    digitalWrite(LED_VERMELHO_PIN, LOW); // Turn off red LED
+  }
+
+  digitalWrite(LED_VERDE_PIN, LOW); // Turn off green LED
+
+  // BUZZER ON
+  if (buzzer_on > 0){
+    digitalWrite(BUZZER_PIN, HIGH);
+  }
+  else{
+    digitalWrite(BUZZER_PIN, LOW);
+  }
+}
